@@ -1,0 +1,567 @@
+/* *************************************************************************
+
+styles.css
+
+00. Variables
+01. Globals
+02. Layout
+03. Button Animation Fade
+04. Button Animation Slide Right
+05. Button Animation Slide Up
+06. Button Animation Ripple
+
+************************************************************************* */
+
+/* *************************************************************************
+
+00. Variables
+Set :root variables for brand theming.
+
+************************************************************************* */
+
+:root {
+  --brand-color: #1a4d78;
+  --brand-color-inverse: #fff;
+  --brand-color-hover: #103656;
+  --brand-color-inverse-hover: #c9d7e6;
+  --brand-color-focus: rgba(17, 99, 165, 0.3);
+  --brand-color-inverse-focus: rgba(255, 255, 255, 0.3);
+  --brand-font-stack: 'Montserrat', 'Source Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* *************************************************************************
+
+01. Globals
+Set body/html styles.
+
+************************************************************************* */
+
+body {
+  font-family: var(--brand-font-stack);
+}
+
+/* *************************************************************************
+
+02. Layout
+Define basic layout for button state display.
+
+************************************************************************* */
+
+.container {
+  margin: 0 auto;
+  max-width: 75rem;
+  padding: 1rem;
+}
+
+.btn-states {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .btn-states {
+      grid-template-columns: 1fr;
+  }
+}
+
+.btn-states__item {
+  padding: 1rem;
+  text-align: center;
+}
+
+.btn-states__item:first-child {
+  background-color: var(--brand-color);
+}
+
+/* *************************************************************************
+
+03. Button Styles
+Define base button styles.
+
+************************************************************************* */
+
+/* Button Defaults */
+
+.btn {
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--brand-color);
+  display: inline-block;
+  position: relative;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  transition-property: color, background-position, background-color, border-color, box-shadow, background-size;
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 0.25rem var(--brand-color-focus);
+  outline-color: transparent;
+  outline-width: 2px;
+  outline-style: solid;
+}
+
+.btn.btn--inverse {
+  color: var(--brand-color-inverse);
+}
+
+.btn.btn--inverse:focus {
+  box-shadow: 0 0 0 0.25rem var(--brand-color-inverse-focus);
+}
+
+/* Button Solid/Outline */
+
+.btn.btn--solid,
+.btn.btn--outline {
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  font-size: .825rem;
+  border-width: 0;
+  border-style: solid;
+  border-radius: .1rem;
+  padding: 1rem 2.875rem;
+}
+
+.btn.btn--outline {
+  padding: .9rem 2.75rem;
+  border-width: .125rem;
+}
+
+.btn.btn--solid {
+  background-color: var(--brand-color);
+  border-color: var(--brand-color);
+  color: var(--brand-color-inverse);
+}
+
+.btn.btn--inverse.btn--solid {
+  background-color: var(--brand-color-inverse);
+  border-color: var(--brand-color-inverse);
+  color: var(--brand-color);
+}
+
+/* Button Underline */
+
+.btn.btn--underline {
+  padding: .825rem;
+  border-radius: .1rem;
+}
+
+.btn.btn--underline::after {
+  content: '';
+  position: absolute;
+  bottom: .1rem;
+  left: .825rem;
+  width: calc(100% - 1.65rem);
+  height: .125rem;
+  background-color: var(--brand-color);
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  transition-property: width, height, opacity;
+}
+
+.btn.btn--inverse.btn--underline::after {
+  background-color: var(--brand-color-inverse);
+}
+
+/* *************************************************************************
+
+03. Button Animation Fade
+
+************************************************************************* */
+
+/* Solid */
+
+.btn.btn--solid.btn--hover-fade:focus-within {
+  background-color: var(--brand-color-hover);
+  border-color: var(--brand-color-hover);
+}
+
+.btn.btn--inverse.btn--solid.btn--hover-fade:focus-within {
+  background-color: var(--brand-color-inverse-hover);
+  border-color: var(--brand-color-inverse-hover);
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--solid.btn--hover-fade:hover {
+    background-color: var(--brand-color-hover);
+    border-color: var(--brand-color-hover);
+  }
+  
+  .btn.btn--inverse.btn--solid.btn--hover-fade:hover {
+    background-color: var(--brand-color-inverse-hover);
+    border-color: var(--brand-color-inverse-hover);
+  }
+}
+
+/* Outline */
+
+.btn.btn--outline.btn--hover-fade:focus-within {
+  background-color: var(--brand-color);
+  border-color: var(--brand-color);
+  color: var(--brand-color-inverse);
+}
+
+.btn.btn--inverse.btn--outline.btn--hover-fade:focus-within {
+  background-color: var(--brand-color-inverse);
+  border-color: var(--brand-color-inverse);
+  color: var(--brand-color);
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--outline.btn--hover-fade:hover {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    color: var(--brand-color-inverse);
+  }
+
+  .btn.btn--inverse.btn--outline.btn--hover-fade:hover {
+    background-color: var(--brand-color-inverse);
+    border-color: var(--brand-color-inverse);
+    color: var(--brand-color);
+  }
+}
+
+/* Underline */
+
+.btn.btn--underline.btn--hover-fade:focus-within::after {
+  opacity: .5;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--underline.btn--hover-fade:hover::after {
+    opacity: .5;
+  }
+}
+
+/* *************************************************************************
+
+04. Button Animation Slide Right
+
+************************************************************************* */
+
+/* Solid */
+
+.btn.btn--solid.btn--hover-slide-right,
+.btn.btn--solid.btn--inverse.btn--hover-slide-right {
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: background-position .2s ease-in-out;
+}
+
+.btn.btn--solid.btn--hover-slide-right {
+  background-image: linear-gradient(to left, transparent, transparent 50%, var(--brand-color-hover) 50%);
+}
+
+.btn.btn--solid.btn--inverse.btn--hover-slide-right {
+  background-image: linear-gradient(to left, transparent, transparent 50%, var(--brand-color-inverse-hover) 50%);
+}
+
+.btn.btn--solid.btn--hover-slide-right:focus-within {
+  background-position: 0 0;
+}
+.btn.btn--solid.btn--inverse.btn--hover-slide-right:focus-within {
+  background-position: 0 0;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--solid.btn--hover-slide-right:hover {
+    background-position: 0 0;
+  }
+  .btn.btn--solid.btn--inverse.btn--hover-slide-right:hover {
+    background-position: 0 0;
+  }
+}
+
+/* Outline */
+
+.btn.btn--outline.btn--hover-slide-right,
+.btn.btn--outline.btn--inverse.btn--hover-slide-right {
+  background-position: 100% 0;
+  background-size: 200% 100%;
+}
+
+.btn.btn--outline.btn--hover-slide-right {
+  background-image: linear-gradient(to left, transparent, transparent 50%,  var(--brand-color) 50%);
+  border-color: var(--brand-color);
+}
+
+.btn.btn--outline.btn--inverse.btn--hover-slide-right {
+  background-image: linear-gradient(to left, transparent, transparent 50%, var(--brand-color-inverse) 50%);
+  border-color: var(--brand-color-inverse);
+}
+
+.btn.btn--outline.btn--hover-slide-right:focus-within {
+  background-position: 0 0;
+  color: var(--brand-color-inverse);
+  border-color: var(--brand-color);
+}
+.btn.btn--outline.btn--inverse.btn--hover-slide-right:focus-within {
+  background-position: 0 0;
+  color: var(--brand-color);
+  border-color: var(--brand-color-inverse);
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--outline.btn--hover-slide-right:hover {
+    background-position: 0 0;
+    color: var(--brand-color-inverse);
+    border-color: var(--brand-color);
+  }
+  .btn.btn--outline.btn--inverse.btn--hover-slide-right:hover {
+    background-position: 0 0;
+    color: var(--brand-color);
+    border-color: var(--brand-color-inverse);
+  }
+}
+
+/* Underline */
+
+.btn.btn--underline.btn--hover-slide-right:focus::after {
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-name: underlineSlideRight;
+  height: .3rem;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--underline.btn--hover-slide-right:hover::after {
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-name: underlineSlideRight;
+    height: .3rem;
+  }
+}
+
+@keyframes underlineSlideRight { 
+  0% {
+    width: calc(100% - 1.65rem);
+    right: .825rem;
+    left: auto;
+    height: .125rem;
+  }
+  50% {
+    width: 0;
+    right: .825rem;
+    left: auto;
+    height: .125rem;
+  }
+  55% {
+    width: 0;
+    right: auto;
+    left: .825rem;
+    height: .3rem;
+  }
+  100% {
+    left: .825rem;
+    width: calc(100% - 1.65rem);
+    right: auto;
+    height: .3rem;
+  }
+}
+
+/* *************************************************************************
+
+05. Button Animation Slide Up
+
+************************************************************************* */
+
+/* Solid */
+
+.btn.btn--solid.btn--hover-slide-up,
+.btn.btn--solid.btn--inverse.btn--hover-slide-up {
+  background-position: 0 0;
+  background-size: 100% 200%;
+  transition: background-position .2s ease-in-out;
+}
+
+.btn.btn--solid.btn--hover-slide-up {
+  background-image: linear-gradient(to bottom, transparent, transparent 50%, var(--brand-color-hover) 50%);
+}
+
+.btn.btn--solid.btn--inverse.btn--hover-slide-up {
+  background-image: linear-gradient(to bottom, transparent, transparent 50%, var(--brand-color-inverse-hover) 50%);
+}
+
+.btn.btn--solid.btn--hover-slide-up:focus-within {
+  background-position: 0 100%;
+}
+.btn.btn--solid.btn--inverse.btn--hover-slide-up:focus-within {
+  background-position: 0 100%;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--solid.btn--hover-slide-up:hover {
+    background-position: 0 100%;
+  }
+  .btn.btn--solid.btn--inverse.btn--hover-slide-up:hover {
+    background-position: 0 100%;
+  }
+}
+
+/* Outline */
+
+.btn.btn--outline.btn--hover-slide-up,
+.btn.btn--outline.btn--inverse.btn--hover-slide-up {
+  background-position: 0 0;
+  background-size: 100% 200%;
+}
+
+.btn.btn--outline.btn--hover-slide-up {
+  background-image: linear-gradient(to bottom, transparent, transparent 50%,  var(--brand-color) 50%);
+  border-color: var(--brand-color);
+}
+
+.btn.btn--outline.btn--inverse.btn--hover-slide-up {
+  background-image: linear-gradient(to bottom, transparent, transparent 50%, var(--brand-color-inverse) 50%);
+  border-color: var(--brand-color-inverse);
+}
+
+.btn.btn--outline.btn--hover-slide-up:focus-within {
+  background-position: 0 100%;
+  color: var(--brand-color-inverse);
+  border-color: var(--brand-color);
+}
+.btn.btn--outline.btn--inverse.btn--hover-slide-up:focus-within {
+  background-position: 0 100%;
+  color: var(--brand-color);
+  border-color: var(--brand-color-inverse);
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--outline.btn--hover-slide-up:hover {
+    background-position: 0 100%;
+    color: var(--brand-color-inverse);
+    border-color: var(--brand-color);
+  }
+  .btn.btn--outline.btn--inverse.btn--hover-slide-up:hover {
+    background-position: 0 100%;
+    color: var(--brand-color);
+    border-color: var(--brand-color-inverse);
+  }
+}
+
+/* Underline */
+
+.btn.btn--underline.btn--hover-slide-up:focus::after {
+  height: .3rem;
+  transition-duration: .1s;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--underline.btn--hover-slide-up:hover::after {
+    height: .3rem;
+    transition-duration: .1s;
+  }
+}
+
+/* *************************************************************************
+
+06. Button Animation Ripple
+
+************************************************************************* */
+
+/* Solid */
+
+.btn.btn--solid.btn--hover-ripple,
+.btn.btn--solid.btn--inverse.btn--hover-ripple {
+  background-size: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.btn.btn--solid.btn--hover-ripple {
+  background-image: radial-gradient(circle at center center, var(--brand-color-hover) 0%, var(--brand-color-hover) 50%, transparent 0%);
+}
+
+.btn.btn--solid.btn--inverse.btn--hover-ripple {
+  background-image: radial-gradient(circle at center center, var(--brand-color-inverse-hover) 0%, var(--brand-color-inverse-hover) 50%, transparent 0%);
+}
+
+.btn.btn--solid.btn--hover-ripple:focus-within,
+.btn.btn--solid.btn--inverse.btn--hover-within:hover {
+  background-size: 250%;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--solid.btn--hover-ripple:hover,
+  .btn.btn--solid.btn--inverse.btn--hover-ripple:hover {
+    background-size: 250%;
+  }
+}
+
+/* Outline */
+
+.btn.btn--outline.btn--hover-ripple,
+.btn.btn--outline.btn--inverse.btn--hover-ripple {
+  background-size: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.btn.btn--outline.btn--hover-ripple {
+  background-image: radial-gradient(circle at center center, var(--brand-color) 0%, var(--brand-color) 50%, transparent 0%);
+  border-color: var(--brand-color);
+}
+
+.btn.btn--outline.btn--inverse.btn--hover-ripple {
+  background-image: radial-gradient(circle at center center, var(--brand-color-inverse) 0%, var(--brand-color-inverse) 50%, transparent 0%);
+  border-color: var(--brand-color-inverse);
+}
+
+.btn.btn--outline.btn--hover-ripple:focus-within {
+  background-size: 250%;
+  color: var(--brand-color-inverse);
+  border-color: var(--brand-color);
+}
+.btn.btn--outline.btn--inverse.btn--hover-ripple:focus-within {
+  background-size: 250%;
+  color: var(--brand-color);
+  border-color: var(--brand-color-inverse);
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--outline.btn--hover-ripple:hover {
+    background-size: 250%;
+    color: var(--brand-color-inverse);
+    border-color: var(--brand-color);
+  }
+  .btn.btn--outline.btn--inverse.btn--hover-ripple:hover {
+    background-size: 250%;
+    color: var(--brand-color);
+    border-color: var(--brand-color-inverse);
+  }
+}
+
+/* Underline */
+
+.btn.btn--underline.btn--hover-ripple:focus::after {
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-name: underlineRipple;
+  height: .3rem;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .btn.btn--underline.btn--hover-ripple:hover::after {
+    animation-duration: .25s;
+    animation-iteration-count: 1;
+    animation-name: underlineRipple;
+    height: .3rem;
+  }
+}
+
+@keyframes underlineRipple { 
+  0% {
+    width: 0;
+    height: .3rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    width: calc(100% - 1.65rem);
+    height: .3rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
