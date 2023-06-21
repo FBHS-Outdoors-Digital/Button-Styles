@@ -21,6 +21,7 @@ Set :root variables for brand theming.
 
 :root {
   --brand-color: #1a4d78;
+  --brand-color-light-gray: #ecedef;
   --brand-color-inverse: #fff;
   --brand-color-hover: #103656;
   --brand-color-inverse-hover: #c9d7e6;
@@ -73,6 +74,10 @@ Define basic layout for button state display.
 
 .btn-states__item:first-child {
   background-color: var(--brand-color);
+}
+
+.btn-states__item:nth-child(2) {
+  background-color: var(--brand-color-light-gray);
 }
 
 /* *************************************************************************
